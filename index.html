@@ -1,0 +1,591 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Innovation Day Outside Read</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@300;400;500&family=Archivo:wdth,wght@85..100,400..700&display=swap">
+<style>
+/* Layout: slate hero band, an owner x size heat grid, then ten insight cards each closed by a quick test. Styled after vitamix.com: light slab serif headlines (Sentinel there, Zilla Slab here), narrow sans body (Gotham Narrow there, Archivo here), slate #333F48 text, red #C8102E only for eyebrows, sage #5E7D61 for tests, 2px corners. */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --warm:#FAF6F1; --ink:#333F48; --slate:#5B6770; --muted:#6E6A66; --rule:#ECE6DF; --rule-strong:#D9D1C7; --red:#C8102E; --red-ink:#FFFFFF; --amber:#5E7D61; --sage:#5E7D61; --heat:#C8102E; --postit:#F5EEE5; --pop:#C8102E; --pop-ink:#FFFFFF; --postit-ink:#333F48; --hero:#F3EBE1; --hero-ink:#333F48; --hero-muted:#5B6770;
+  --display:"Zilla Slab",Georgia,"Times New Roman",serif;
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --mono:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+:root[data-theme="dark"]{ --bg:#191613; --surface:#221E1A; --warm:#1D1A17; --ink:#F1ECE6; --slate:#CFC6BC; --muted:#A99F94; --rule:#352F29; --rule-strong:#4A423A; --red:#F04A62; --red-ink:#191613; --amber:#8FB394; --sage:#9DBDA1; --heat:#E0344D; --postit:#2B2620; --pop:#B3122E; --pop-ink:#FFFFFF; --postit-ink:#F1ECE6; --hero:#2A241E; --hero-ink:#F3ECE4; --hero-muted:#C9BBAA; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;margin:0}
+.band{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1080px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-stretch:82%;line-height:1.05;text-wrap:balance;margin:0}
+p{margin:0}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+
+/* hero */
+.hero{background:var(--hero);color:var(--hero-ink)}
+.hero .inner{padding-block:56px 48px;display:grid;gap:22px}
+.hero .eyebrow{color:var(--amber)}
+.hero h1{font-size:clamp(40px,7.5vw,84px);font-weight:900;letter-spacing:-.02em;max-width:14ch}
+.hero h1 span{color:var(--red)}
+.hero .sub{font-size:clamp(17px,2vw,20px);color:var(--hero-muted);max-width:52ch}
+.hero .nums{display:flex;flex-wrap:wrap;gap:12px 48px;margin-top:8px}
+.hero .nums div{display:grid;gap:2px}
+.hero .nums b{font-family:var(--display);font-stretch:75%;font-size:clamp(44px,6vw,64px);font-weight:900;line-height:1}
+.hero .nums span{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--hero-muted)}
+.hero .nums div:last-child b{color:var(--red)}
+
+/* section heads */
+.sec .inner{padding-block:56px}
+.sec-head{display:grid;gap:8px;margin-bottom:24px;max-width:64ch}
+.sec-head h2{font-size:clamp(30px,4.6vw,48px);font-weight:850;letter-spacing:-.01em}
+.sec-head p{font-size:17px;color:var(--muted)}
+.sec.alt{background:var(--surface)}
+
+/* grid */
+.grid-wrap{overflow-x:auto;padding-bottom:4px}
+.ideagrid{display:grid;grid-template-columns:minmax(150px,.9fr) repeat(3,minmax(170px,1fr));gap:6px;min-width:700px}
+.ch{padding:4px 6px 8px;display:grid;gap:2px;align-content:end}
+.ch b{font-family:var(--display);font-stretch:85%;font-size:17px;font-weight:800}
+.ch em,.rh em{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.rh{padding:12px 10px 12px 0;display:grid;gap:2px;align-content:center;border-top:1px solid var(--rule)}
+.rh b{font-family:var(--display);font-stretch:85%;font-size:17px;font-weight:800;line-height:1.1}
+.rh span{font-size:13px;color:var(--muted)}
+.cell{all:unset;box-sizing:border-box;cursor:pointer;border-radius:6px;padding:12px 14px;min-height:118px;display:grid;grid-template-rows:auto 1fr auto;gap:6px;
+  background:color-mix(in srgb,var(--red) var(--pct),var(--surface));color:var(--ink);border:1px solid var(--rule);transition:transform .15s ease, box-shadow .15s ease}
+.cell b{font-family:var(--display);font-stretch:75%;font-size:40px;font-weight:900;line-height:.95}
+.cell ul{margin:0;padding:0;list-style:none;display:grid;gap:3px;font-size:13px;line-height:1.3}
+.cell .more{font-family:var(--mono);font-size:11px;letter-spacing:.05em;opacity:.75}
+.cell.dark{color:#fff}
+.cell:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.12)}
+.cell[aria-pressed="true"]{outline:3px solid var(--ink);outline-offset:1px}
+.cell:focus-visible{outline:3px solid var(--amber)}
+.cell.empty{cursor:default;background:transparent;border:2px dashed var(--rule-strong);color:var(--muted);align-content:start}
+.cell.empty b{color:var(--rule-strong)}
+.cell.empty .none{font-size:13px}
+.panel{margin-top:16px;background:var(--bg);border-radius:6px;padding:18px 20px;display:grid;gap:10px}
+.sec.alt .panel{background:var(--bg)}
+.panel h3{font-size:22px;font-weight:800}
+.panel ol{margin:0;padding-left:0;list-style:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 20px}
+.panel li{display:grid;grid-template-columns:58px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35;align-items:baseline}
+.panel li i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);text-align:right}
+.reads{margin-top:28px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.read{border-top:4px solid var(--red);padding-top:12px;display:grid;gap:4px;align-content:start}
+.read b{font-family:var(--display);font-stretch:80%;font-size:30px;font-weight:900;line-height:1}
+.read p{font-size:14.5px}
+.legend-note{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:10px}
+
+/* learnings */
+.learn{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.lt{background:var(--surface);border-radius:8px;padding:22px;display:grid;gap:12px;align-content:start;border:1px solid var(--rule)}
+.lt.wide{grid-column:span 3}
+.lt.third{grid-column:span 2}
+.lt .big{font-family:var(--display);font-stretch:72%;font-size:clamp(56px,8vw,88px);font-weight:900;line-height:.9;color:var(--red);font-variant-numeric:tabular-nums}
+.lt .big small{font-size:.42em;color:var(--muted);font-weight:800;letter-spacing:0}
+.lt h3{font-size:24px;font-weight:850}
+.lt p{font-size:15px;color:var(--slate)}
+.pair{display:grid;grid-template-columns:auto auto;gap:4px 18px;justify-content:start;align-items:end}
+.pair .big{font-size:clamp(46px,6vw,68px)}
+.pair span{font-family:var(--mono);font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.postit{background:var(--postit);color:var(--postit-ink);padding:12px 14px;font-size:15px;line-height:1.3;transform:rotate(-1.5deg);box-shadow:0 4px 12px rgba(0,0,0,.1);max-width:260px}
+.postit small{display:block;font-family:var(--mono);font-size:10.5px;opacity:.7;margin-top:6px}
+
+/* next steps */
+.lanes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}
+.lane{display:grid;gap:12px}
+.lane-head{display:grid;gap:4px;padding-bottom:10px;border-bottom:3px solid var(--ink)}
+.lane-head h3{font-size:26px;font-weight:900}
+.lane-head p{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.04em}
+.step{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:16px 18px;display:grid;gap:8px}
+.sec.alt .step{background:var(--bg)}
+.step h4{font-family:var(--display);font-stretch:85%;font-size:20px;font-weight:850;margin:0;line-height:1.1}
+.step p{font-size:14.5px}
+.step .learnline{font-size:14px;color:var(--slate);border-left:3px solid var(--amber);padding-left:10px}
+.step .with{justify-self:start;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;background:var(--ink);color:var(--surface);padding:3px 8px;border-radius:3px}
+
+/* close */
+.close .inner{padding-block:48px;display:grid;gap:16px}
+.close h2{font-size:clamp(28px,4vw,40px);font-weight:900;max-width:22ch}
+.close h2 span{color:var(--red)}
+.close p{color:var(--hero-muted);max-width:60ch}
+.close{background:var(--hero);color:var(--hero-ink)}
+.fine{font-family:var(--mono);font-size:11.5px;color:var(--hero-muted);display:grid;gap:4px;margin-top:10px}
+
+@media (max-width:900px){
+  .reads{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .learn{grid-template-columns:1fr}
+  .lt.wide,.lt.third{grid-column:auto}
+  .lanes{grid-template-columns:1fr}
+  .panel ol{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .grid-wrap{overflow:visible}
+  .ideagrid{min-width:0;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .ch.corner{display:none}
+  .ch b{font-size:14px}
+  .rh{grid-column:1/-1;padding:14px 0 2px;border-top:1px solid var(--rule)}
+  .cell{min-height:84px;padding:10px}
+  .cell ul{display:none}
+  .cell b{font-size:32px}
+}
+@media (max-width:480px){.reads{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.cell{transition:none}.cell:hover{transform:none}}
+
+/* print / PDF */
+@page{size:letter;margin:12mm}
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{
+    --bg:#FFFFFF; --surface:#FFFFFF; --warm:#FAF6F1; --ink:#333F48; --slate:#5B6770; --muted:#6E6A66; --rule:#ECE6DF; --rule-strong:#D9D1C7; --red:#C8102E; --red-ink:#FFFFFF; --amber:#5E7D61; --sage:#5E7D61; --heat:#C8102E; --postit:#F5EEE5; --pop:#C8102E; --pop-ink:#FFFFFF; --postit-ink:#333F48; --hero:#F3EBE1; --hero-ink:#333F48; --hero-muted:#5B6770; color-scheme:light}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-size:10pt;background:#fff}
+  .band{padding-left:0;padding-right:0}
+  .hero .inner{padding:26px 26px 22px;gap:12px}
+  .hero h1{font-size:40pt}
+  .hero .sub{font-size:12pt}
+  .hero .nums b{font-size:34pt}
+  .sec .inner{padding:18px 4px}
+  .sec-head{margin-bottom:12px}
+  .sec-head h2{font-size:24pt}
+  .sec-head p{font-size:11pt}
+  .organize{break-after:page;page-break-after:always}
+  .learnsec{break-after:page;page-break-after:always}
+  .grid-wrap{overflow:visible}
+  .ideagrid{min-width:0;grid-template-columns:120px repeat(3,1fr);gap:4px}
+  .cell{min-height:86px;padding:8px 10px;gap:3px}
+  .cell b{font-size:24pt}
+  .cell ul{font-size:8pt}
+  .cell .more,.panel{display:none}
+  .rh b,.ch b{font-size:11pt}
+  .rh span{font-size:8pt}
+  .reads{grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+  .read b{font-size:18pt}
+  .read p{font-size:8.6pt}
+  .learn{grid-template-columns:repeat(6,1fr);gap:8px}
+  .lt.wide{grid-column:span 3}
+  .lt.third{grid-column:span 2}
+  .lt{padding:12px;gap:6px;break-inside:avoid}
+  .lt .big{font-size:40pt}
+  .pair .big{font-size:32pt}
+  .lt h3{font-size:14pt}
+  .lt p{font-size:9pt}
+  .postit{font-size:9.5pt;box-shadow:none;transform:none;border:1px solid #E5C95A}
+  .lanes{grid-template-columns:repeat(3,1fr);gap:10px}
+  .step{padding:10px 12px;gap:5px;break-inside:avoid}
+  .step h4{font-size:12pt}
+  .step p,.step .learnline{font-size:8.6pt}
+  .lane-head h3{font-size:15pt}
+  .close .inner{padding:18px 22px;gap:8px}
+  .close h2{font-size:18pt}
+  .close p{font-size:9.5pt}
+  .close{break-inside:avoid}
+  .hero{break-after:page;page-break-after:always}
+  .hero .inner{min-height:250mm;align-content:center;padding:40px 36px;gap:20px}
+  .hero h1{font-size:54pt}
+  .hero .sub{font-size:15pt}
+  .hero .nums b{font-size:46pt}
+  .ideagrid,.reads,.lanes,.learn{break-inside:avoid;page-break-inside:avoid}
+  .lane-head{padding-bottom:6px}
+  .lanes{gap:8px}
+  .lane{gap:8px}
+  .close{break-before:avoid;page-break-before:avoid}
+  .close .inner{padding:14px 20px;gap:6px}
+  .close h2{font-size:15pt}
+  .sec.alt:last-of-type .inner{padding-bottom:8px}
+  .lanes + *{margin:0}
+  .close .inner{grid-template-columns:1fr 1.3fr;align-items:center;column-gap:20px;padding:12px 18px}
+  .close h2{grid-row:span 2}
+  .close .fine{margin-top:0;font-size:7.5pt}
+  .close p{font-size:8.6pt}
+  .step{padding:8px 10px;gap:3px}
+  .sec-head{gap:4px}
+  .step p,.step .learnline{font-size:8pt;line-height:1.32}
+  .step h4{font-size:11pt}
+  .step .with{font-size:7pt;padding:1px 6px}
+  .read p{font-size:8.2pt}
+  .sec .inner{padding-top:12px}
+  .close .inner{padding:8px 14px}
+  .close h2{font-size:13pt}
+  .sec .inner{padding-bottom:6px}
+  .sec-head p{font-size:10pt}
+}
+
+/* insights */
+.ins-group{margin:28px 0 12px;display:flex;align-items:center;gap:12px}
+.ins-group:first-of-type{margin-top:0}
+.gl{font-family:var(--display);font-stretch:85%;font-size:20px;font-weight:850;white-space:nowrap}
+.ins-group::after{content:"";flex:1;height:2px;background:var(--ink)}
+.ins-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+.ins-grid.one{grid-template-columns:1fr}
+.ins{background:var(--surface);border:1px solid var(--rule);border-radius:8px;display:grid;grid-template-rows:1fr auto;overflow:hidden}
+.ins-top{padding:20px 20px 16px;display:grid;gap:10px;align-content:start}
+.ins .big{white-space:nowrap;font-family:var(--display);font-stretch:72%;font-size:clamp(34px,3.6vw,48px);font-weight:900;line-height:.9;color:var(--red);font-variant-numeric:tabular-nums}
+.ins .big small{font-size:.5em;color:var(--muted);font-weight:800}
+.ins h3{font-size:21px;font-weight:850;line-height:1.12}
+.ins-top p{font-size:14.5px;color:var(--slate)}
+.test{background:var(--postit);color:var(--postit-ink);padding:16px 20px 18px;display:grid;gap:8px;align-content:start}
+.test .tl{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:500}
+.test p{font-size:14.5px;line-height:1.4}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips span{font-family:var(--mono);font-size:11px;background:rgba(43,35,6,.1);border-radius:3px;padding:2px 7px}
+.test .gain{font-weight:600}
+.test .caution{font-size:12.5px;opacity:.8;font-style:italic}
+.ins.wide{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto}
+@media (max-width:900px){.ins-grid{grid-template-columns:1fr}.ins.wide{grid-template-columns:1fr}}
+@media print{
+  .insec .inner{padding-top:8px}
+  .ins-grid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .ins.wide{grid-template-columns:1fr 1fr}
+  .ins{break-inside:avoid;page-break-inside:avoid}
+  .ins-top{padding:10px 12px 8px;gap:5px}
+  .ins .big{font-size:20pt}
+  .ins h3{font-size:11pt}
+  .ins-top p,.test p{font-size:8pt;line-height:1.32}
+  .test{padding:8px 12px 10px;gap:4px}
+  .test .tl,.chips span{font-size:6.8pt}
+  .test .caution{font-size:7.4pt}
+  .gl{font-size:12pt}
+  .ins-group{margin:10px 0 6px;break-after:avoid;page-break-after:avoid}
+  .insec .sec-head{margin-bottom:6px}
+}
+
+@media print{
+  .ins-top{padding:8px 10px 6px;gap:4px}
+  .ins .big{font-size:18pt}
+  .ins h3{font-size:10.4pt}
+  .ins-top p,.test p{font-size:7.7pt;line-height:1.3}
+  .test{padding:7px 10px 8px;gap:3px}
+  .ins-group{margin:8px 0 5px}
+  .insec .sec-head p{font-size:9pt}
+}
+
+/* vitamix.com brand layer */
+body{font-stretch:92%;color:var(--ink)}
+h1,h2,h3,.gl,.rh b,.ch b,.ins h3,.panel h3{font-family:var(--display);font-stretch:normal;letter-spacing:0}
+.hero h1{font-weight:300;letter-spacing:-.01em;line-height:1.05}
+.hero h1 span{color:var(--hero-muted)}
+.sec-head h2,.close h2{font-weight:300;line-height:1.1}
+.ins h3,.panel h3{font-weight:400;line-height:1.18}
+.gl{font-weight:400}
+.rh b,.ch b{font-weight:500}
+.eyebrow{font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:.14em;color:var(--red)}
+.hero .eyebrow{color:var(--hero-muted)}
+.hero .nums b,.cell b,.ins .big,.read b{font-family:var(--display);font-stretch:normal;font-weight:300;letter-spacing:-.01em}
+.hero .nums div:last-child b{color:var(--hero-ink)}
+.hero .nums span,.ch em,.rh em,.legend-note,.panel li i{font-family:var(--body);letter-spacing:.08em}
+.cell{border-radius:2px;background:color-mix(in srgb,var(--heat) var(--pct),var(--surface))}
+.cell.dark{color:var(--surface)}
+.cell[aria-pressed="true"]{outline:2px solid var(--red);outline-offset:2px}
+.cell .more{font-family:var(--body);text-transform:uppercase;letter-spacing:.1em;font-size:10px}
+.panel,.ins,.test,.step,.lt{border-radius:2px}
+.read{border-top:2px solid var(--ink)}
+.ins .big{color:var(--ink)}
+.ins .big small{color:var(--slate);font-weight:300}
+.test{background:var(--postit);color:var(--postit-ink);border-top:2px solid var(--sage)}
+.test .tl{font-family:var(--body);font-weight:600;letter-spacing:.12em;color:var(--sage)}
+.chips span{font-family:var(--body);background:transparent;border:1px solid var(--rule-strong);border-radius:2px;letter-spacing:.04em}
+.close h2 span{color:var(--hero-muted)}
+.fine{font-family:var(--body)}
+:focus-visible{outline:2px solid var(--red)}
+
+/* warm pass: white and cream like vitamix.com photography, red where it pops */
+.sec.alt{background:var(--warm)}
+.sec{background:var(--bg)}
+.hero{background:var(--hero);color:var(--hero-ink)}
+.hero h1 span{color:var(--red)}
+.hero .eyebrow{color:var(--red)}
+.hero .sub{color:var(--hero-muted)}
+.hero .nums span{color:var(--hero-muted)}
+.hero .nums div:last-child b{color:var(--red)}
+.sec-head{margin-left:auto;margin-right:auto;text-align:center;justify-items:center}
+.ins .big,.read b{color:var(--red)}
+.cell.dark{color:#FFFFFF}
+.cell[aria-pressed="true"]{outline:2px solid var(--ink)}
+.ins{border-color:var(--rule)}
+.test{border-top:2px solid var(--sage)}
+.close{background:var(--hero);color:var(--hero-ink)}
+.close h2 span{color:var(--red)}
+.close p,.fine{color:var(--hero-muted)}
+.read{border-top:2px solid var(--red)}
+
+.hero .inner{position:relative}
+.theme-toggle{position:absolute;top:18px;right:0;display:inline-flex;border:1px solid var(--rule-strong);border-radius:2px;overflow:hidden;background:var(--surface)}
+.theme-toggle button{all:unset;cursor:pointer;font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;color:var(--slate)}
+.theme-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--surface)}
+.theme-toggle button:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
+@media (max-width:640px){.theme-toggle{position:static;justify-self:start;order:-1}}
+@media print{.theme-toggle{display:none}}
+
+/* themes inside squares and panel */
+.cell li.th{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.cell li.th i{font-style:normal;font-family:var(--display);font-size:15px;font-weight:400;opacity:.85}
+.tgs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 28px}
+.tg{display:grid;gap:8px;align-content:start}
+.tg h4{margin:0;display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:var(--display);font-weight:400;font-size:18px;border-bottom:2px solid var(--red);padding-bottom:4px}
+.tg h4 i{font-style:normal;font-family:var(--body);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tg ol{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.tg li{display:grid;grid-template-columns:58px minmax(0,1fr);gap:8px;font-size:14px;line-height:1.35;align-items:baseline}
+.tg li i{font-style:normal;font-family:var(--body);font-size:11px;color:var(--muted);text-align:right;letter-spacing:.04em}
+.tg:only-child{grid-column:1/-1}
+@media (max-width:900px){.tgs{grid-template-columns:1fr}}
+@media print{.cell li.th i{font-size:9pt}}
+
+.panel .tg ol{grid-template-columns:1fr}
+@media print{
+  .cell{min-height:0;padding:6px 8px;gap:2px}
+  .cell ul{font-size:7.4pt;gap:1px}
+  .cell b{font-size:18pt}
+  .reads{margin-top:8px}
+}
+
+/* report pass: aligned tests, one red pop per card, calmer hierarchy */
+.ins-grid{grid-auto-rows:auto;gap:18px}
+.ins{grid-row:span 2;display:grid;grid-template-rows:subgrid;row-gap:0;border:1px solid var(--rule);box-shadow:none}
+.ins.wide{grid-row:auto;grid-template-rows:auto;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.ins-top{padding:24px 24px 22px;gap:12px}
+.ins .big{color:var(--ink);font-size:clamp(38px,4vw,52px)}
+.ins .big small{color:var(--muted)}
+.ins h3{font-size:22px;line-height:1.2}
+.ins-top p{font-size:15px;line-height:1.55;color:var(--slate)}
+.test{background:var(--pop);color:var(--pop-ink);border-top:0;padding:20px 24px 22px;gap:10px;align-content:start}
+.test .tl{color:var(--pop-ink);opacity:.82;letter-spacing:.14em}
+.test p{font-size:15px;line-height:1.5}
+.test .gain{color:var(--pop-ink);font-weight:600;padding-top:10px;border-top:1px solid rgba(255,255,255,.35)}
+.test .caution{color:var(--pop-ink);opacity:.82;font-size:13px}
+.chips span{color:var(--pop-ink);border-color:rgba(255,255,255,.55);background:transparent}
+.ins-group{margin:44px 0 16px}
+.ins-group:first-of-type{margin-top:8px}
+.gl{font-size:24px;font-weight:300}
+.read b{color:var(--ink)}
+.read{border-top:2px solid var(--red)}
+.sec-head{max-width:60ch;gap:10px;margin-bottom:32px}
+.sec-head p{font-size:16.5px;line-height:1.55}
+.sec .inner{padding-block:72px}
+@media (max-width:900px){.ins{grid-row:auto;grid-template-rows:auto}.ins.wide{grid-template-columns:1fr}}
+@media print{
+  .ins-grid{gap:8px}
+  .ins{grid-row:span 2;grid-template-rows:subgrid}
+  .ins-top{padding:9px 11px 8px;gap:4px}
+  .ins .big{font-size:18pt}
+  .ins h3{font-size:10.4pt}
+  .ins-top p,.test p{font-size:7.7pt;line-height:1.32}
+  .test{padding:8px 11px 9px;gap:4px}
+  .test .gain{padding-top:4px}
+  .test .caution{font-size:7.2pt}
+  .ins-group{margin:8px 0 5px}
+  .gl{font-size:12pt}
+  .sec .inner{padding-block:10px}
+  .sec-head{margin-bottom:8px}
+}
+
+/* session learnings */
+.ins-grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.support{font-size:13.5px!important;line-height:1.45;color:var(--muted)!important;border-left:2px solid var(--rule-strong);padding-left:10px}
+.support span{display:block;font-family:var(--body);font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.unsaid{margin-top:56px;border-top:1px solid var(--rule-strong);padding-top:28px;display:grid;gap:18px}
+.unsaid-head{display:grid;gap:6px}
+.unsaid-head h3{font-size:24px;font-weight:300}
+.unsaid-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.unsaid-row div{display:grid;gap:6px;align-content:start}
+.unsaid-row b{font-family:var(--display);font-weight:300;font-size:34px;line-height:1;color:var(--ink)}
+.unsaid-row b small{color:var(--muted);font-size:.6em}
+.unsaid-row p{font-size:14.5px;color:var(--slate)}
+@media (max-width:900px){.ins-grid.two,.unsaid-row{grid-template-columns:1fr}}
+@media print{
+  .ins-grid.two{grid-template-columns:repeat(2,1fr)}
+  .support{font-size:7.2pt!important;padding-left:6px}
+  .support span{font-size:6.2pt}
+  .unsaid{margin-top:10px;padding-top:8px;gap:6px;break-inside:avoid}
+  .unsaid-head h3{font-size:12pt}
+  .unsaid-row{gap:10px}
+  .unsaid-row b{font-size:16pt}
+  .unsaid-row p{font-size:7.8pt}
+}
+
+@media print{
+  .unsaid-row{grid-template-columns:repeat(3,1fr)}
+  .ins-top p,.test p{font-size:7.4pt;line-height:1.28}
+  .ins-top{padding:7px 10px 6px;gap:3px}
+  .test{padding:6px 10px 7px;gap:3px}
+  .ins .big{font-size:16pt}
+  .ins h3{font-size:10pt}
+  .insec .sec-head h2{font-size:18pt}
+  .insec .sec-head{margin-bottom:4px}
+  .ins-group{margin:6px 0 4px}
+}
+
+/* readability pass */
+.ins-grid.two{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.ins-top p{font-size:15.5px;line-height:1.6}
+.test p{font-size:15px;line-height:1.55}
+.sec-head h2{max-width:22ch}
+.sec-head p{max-width:62ch}
+.unsaid-row b{font-size:30px}
+@media print{
+  .ins-grid.two{gap:8px}
+  .ins-top p,.test p{font-size:7.8pt;line-height:1.36}
+  .ins .big{font-size:16pt}
+  .ins h3{font-size:10.6pt}
+  .sec-head p{font-size:9pt}
+}
+
+@media print{
+  .organize .sec-head{margin-bottom:6px}
+  .organize .sec-head h2{font-size:18pt}
+  .organize .sec-head p{font-size:8.4pt;line-height:1.35}
+  .organize .legend-note{margin-top:4px}
+  .ideagrid{gap:3px}
+  .rh{padding:6px 6px 6px 0}
+}
+</style>
+
+<header class="band hero">
+  <div class="inner">
+    <div class="theme-toggle" role="group" aria-label="Color theme"><button type="button" id="t-light" aria-pressed="true">Light</button><button type="button" id="t-dark" aria-pressed="false">Dark</button></div>
+    <p class="eyebrow">Innovation Day · An outside read</p>
+    <h1>Another way to look at <span>what the room came up with</span></h1>
+    <p class="sub">We took all 107 ideas from Innovation Day and sorted them by which part of Vitamix would own them. Then we looked for patterns across the eight boards. We found ten things the session can teach, and each one comes with a quick, low cost test.</p>
+    <div class="nums">
+      <div><b>179</b><span>Post-it notes</span></div>
+      <div><b>107</b><span>distinct ideas</span></div>
+      <div><b>10</b><span>quick tests</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="band sec alt organize" aria-labelledby="h-org">
+  <div class="inner">
+    <div class="sec-head">
+      <p class="eyebrow">01 · How to organize it</p>
+      <h2 id="h-org">Who would own each idea, and how big of a change is it?</h2>
+      <p>We placed each of the 107 ideas in a grid. The rows show which part of Vitamix would own the idea. The columns show how big a change it would be, from using what Vitamix already has to something new for the company. Tap any square to see the ideas inside it.</p>
+    </div>
+    <div class="grid-wrap"><div class="ideagrid"><div class="ch corner"></div><div class="ch"><b>Uses what exists</b><em>16 ideas</em></div><div class="ch"><b>Extends what exists</b><em>56 ideas</em></div><div class="ch"><b>New to Vitamix</b><em>35 ideas</em></div><div class="rh"><b>The machine</b><span>Product development</span><em>39 ideas</em></div><button type="button" class="cell" data-k="ME" style="--pct:15%" aria-label="The machine, Uses what exists: 2 ideas"><b>2</b><ul><li>Smaller containers and portions</li><li>Coffee grinding</li></ul><span class="more">See all</span></button><button type="button" class="cell dark" data-k="MX" style="--pct:90%" aria-label="The machine, Extends what exists: 23 ideas"><b>23</b><ul><li class="th"><span>Smarter programs and feedback</span><i>10</i></li><li class="th"><span>Easier to clean and store</span><i>6</i></li><li class="th"><span>New jobs for the base</span><i>4</i></li><li class="th"><span>Containers for every household</span><i>3</i></li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="MN" style="--pct:58%" aria-label="The machine, New to Vitamix: 14 ideas"><b>14</b><ul><li class="th"><span>A machine that senses and guides</span><i>5</i></li><li class="th"><span>New jobs, new machines</span><i>5</i></li><li class="th"><span>Rethink power and cleaning</span><i>4</i></li></ul><span class="more">See all</span></button><div class="rh"><b>Guidance and content</b><span>Marketing and digital</span><em>37 ideas</em></div><button type="button" class="cell" data-k="GE" style="--pct:54%" aria-label="Guidance and content, Uses what exists: 13 ideas"><b>13</b><ul><li class="th"><span>Teach the basics</span><i>6</i></li><li class="th"><span>Everyday recipes</span><i>4</i></li><li class="th"><span>Show what else it can do</span><i>3</i></li></ul><span class="more">See all</span></button><button type="button" class="cell dark" data-k="GX" style="--pct:79%" aria-label="Guidance and content, Extends what exists: 20 ideas"><b>20</b><ul><li class="th"><span>Decide for me</span><i>7</i></li><li class="th"><span>Plan the week</span><i>5</i></li><li class="th"><span>A better app and site</span><i>4</i></li><li class="th"><span>Voices and reminders</span><i>4</i></li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="GN" style="--pct:22%" aria-label="Guidance and content, New to Vitamix: 4 ideas"><b>4</b><ul><li>A Vitamix chef on call</li><li>Training and certification</li></ul><span class="more">See all</span></button><div class="rh"><b>Buying and owning</b><span>Commercial</span><em>8 ideas</em></div><button type="button" class="cell" data-k="OE" style="--pct:12%" aria-label="Buying and owning, Uses what exists: 1 ideas"><b>1</b><ul><li>Live demos in stores</li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="OX" style="--pct:19%" aria-label="Buying and owning, Extends what exists: 3 ideas"><b>3</b><ul><li>Better audience targeting</li><li>Help choosing the right products</li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="ON" style="--pct:22%" aria-label="Buying and owning, New to Vitamix: 4 ideas"><b>4</b><ul><li>In home parties</li><li>Rental and rent to own</li></ul><span class="more">See all</span></button><div class="rh"><b>Partners</b><span>Business development</span><em>12 ideas</em></div><div class="cell empty" data-k="PE"><b>0</b><span class="none">No ideas yet</span></div><button type="button" class="cell" data-k="PX" style="--pct:15%" aria-label="Partners, Extends what exists: 2 ideas"><b>2</b><ul><li>Connect to owners’ favorite apps</li><li>Gyms as recommenders</li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="PN" style="--pct:44%" aria-label="Partners, New to Vitamix: 10 ideas"><b>10</b><ul><li class="th"><span>Food and grocery</span><i>6</i></li><li class="th"><span>Connected home</span><i>2</i></li><li class="th"><span>Health and rewards</span><i>2</i></li></ul><span class="more">See all</span></button><div class="rh"><b>Community and experiences</b><span>Brand</span><em>11 ideas</em></div><div class="cell empty" data-k="CE"><b>0</b><span class="none">No ideas yet</span></div><button type="button" class="cell" data-k="CX" style="--pct:37%" aria-label="Community and experiences, Extends what exists: 8 ideas"><b>8</b><ul><li class="th"><span>Family and kids</span><i>3</i></li><li class="th"><span>Fun and sharing</span><i>3</i></li><li class="th"><span>Classes and community</span><i>2</i></li></ul><span class="more">See all</span></button><button type="button" class="cell" data-k="CN" style="--pct:19%" aria-label="Community and experiences, New to Vitamix: 3 ideas"><b>3</b><ul><li>Clubs led by super users</li><li>Couples cooking events</li></ul><span class="more">See all</span></button></div></div>
+    <p class="legend-note">The darker the square, the more ideas it holds. Where each idea landed is our call, so treat it as a starting point.</p>
+    <div class="panel" id="panel" aria-live="polite"><h3 id="panel-title"></h3><div id="panel-list" class="tgs"></div></div>
+    <div class="reads">
+      <div class="read"><b>16</b><p>ideas use what Vitamix already has. These could go straight to the teams that own them.</p></div>
+      <div class="read"><b>96 vs 59</b><p>total mentions went to guidance ideas and machine ideas. The room largely agreed on guidance. Ideas about the machine were spread out and rarely repeated.</p></div>
+      <div class="read"><b>10 of 12</b><p>partner ideas would need a kind of relationship Vitamix doesn’t have today.</p></div>
+      <div class="read"><b>8</b><p>ideas deal with how people buy and own a Vitamix. That makes it the least explored row in the grid.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band sec insec" aria-labelledby="h-ins">
+  <div class="inner">
+    <div class="sec-head">
+      <p class="eyebrow">02 · What the session taught us</p>
+      <h2 id="h-ins">Ten things the session taught us</h2>
+      <p>We looked for patterns across the eight boards of Post-it notes and counted the notes behind each one. Each learning ends with a quick test. The tests are small on purpose, so you can learn something real in days or weeks without committing to a product.</p>
+    </div>
+    <div class="ins-grid two">
+      <article class="ins">
+        <div class="ins-top"><div class="big">12 notes</div><h3>People kept describing a Keurig.</h3>
+        <p>A Keurig is a coffee maker that works at the push of one button. Twelve notes on six boards asked for something like it, using phrases like “dump and go,” “idiot proof” and “set it and forget it.” One note even suggested giving up some performance to make the machine more convenient. That pulls against Vitamix’s identity, which is built on power and control.</p><p class="support"><span>From the research</span>Vitamix’s own research found that owners struggle to pick the right settings.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Cover the dial on a few blenders so that only one program button is left. Lend them to ten owners for a week.</p><div class="chips"><span>10 owners</span><span>1 week</span><span>Existing machine</span></div><p class="gain">You’ll learn whether fewer choices lead to more use, and you’ll hear what owners miss.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">11 notes</div><h3>People want someone else to decide what to make.</h3>
+        <p>Eleven notes on five boards asked for help with the choice itself. The ideas included a recipe roulette, a daily blend suggestion on a QR code, and recipes built from what’s already in the fridge. Different tables came up with these on their own.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Place a small card next to the machine with one suggestion each morning. Leave it there for two weeks with 15 owners.</p><div class="chips"><span>15 owners</span><span>2 weeks</span><span>Printed cards</span></div><p class="gain">You’ll learn whether a single suggestion gets the machine used more than a full recipe library does.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">8 of 8</div><h3>Every board wanted someone else to handle the ingredients.</h3>
+        <p>Ideas about getting food to the owner showed up on all eight boards, across 19 notes. They included meal kits, frozen packs that are ready to blend, produce delivery, and sending a recipe’s ingredients straight to an online grocery order. Together they suggest the room sees prep, more than blending, as the real barrier.</p><p class="support"><span>From the research</span>In the research, 16% of owners said having to prep ingredients first frustrates them.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Buy frozen smoothie or soup packs from a grocery store and add a label that says which program to use. Give them to 15 owners for three weeks.</p><div class="chips"><span>15 owners</span><span>3 weeks</span><span>Store bought packs</span></div><p class="gain">You’ll learn whether taking prep off the owner’s plate does more than another recipe would.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">14 notes</div><h3>The room saw the blender as something people use together.</h3>
+        <p>Fourteen notes on five boards brought other people into the kitchen. Kids who want to use the blender came up several times. So did family recipes, cooking as a couple, making a dip together and a party night. Most thinking about usage focuses on one person, but the room kept adding more.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Send five families a simple weekend kit. Include three recipes kids can make on their own, plus a scorecard.</p><div class="chips"><span>5 families</span><span>1 weekend</span></div><p class="gain">You’ll learn whether a second person in the kitchen brings the machine out more often.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">11 notes</div><h3>Some people wanted a real person to teach them.</h3>
+        <p>Eleven notes on four boards asked for help from a person. The ideas included cooking classes at the library, home parties where a host shows the product to friends, demos in stores like Costco, a chef you can call, and local clubs led by experienced owners. This stood out because most of the room reached for apps and videos.</p><p class="support"><span>From the research</span>Vitamix grew through live demonstrations. In 1949, a single half hour TV demo sold more than 400 machines.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Host one live video cook along with ten new owners. Compare what they make over the next month with owners who didn’t join.</p><div class="chips"><span>10 owners</span><span>1 session</span><span>4 week follow up</span></div><p class="gain">You’ll learn whether a real person does more than a video to get owners past their first try.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">6 notes</div><h3>Nobody agreed on the right size.</h3>
+        <p>Some notes asked for smaller portions, for people who live alone or for making dips. Another asked for a container big enough to make smoothies for a family of five or six. The standard large container may be the wrong size for both.</p><p class="support"><span>From the research</span>Vitamix already sells smaller blending cups and bowls that fit on the same motor base. Many owners of the full size machine may not have them.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Give the small cups and bowls to 15 owners who only have the large container. Track what they make over a month.</p><div class="chips"><span>15 owners</span><span>4 weeks</span><span>Existing accessories</span></div><p class="gain">You’ll learn whether the right size changes how often the machine gets used.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">10 notes</div><h3>To fight forgetting, the room reached for reminders.</h3>
+        <p>Ten notes suggested ways to remind owners to use the machine. They included emails, phone notifications, daily streaks and an alert when you walk into a grocery store. A few notes did put something on the machine itself, but those were recipe ideas rather than prompts to use it.</p><p class="support"><span>From the research</span>In the research, Vitamix owners were more likely than other blender owners to say the machine is heavy and hard to move.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Split 20 owners into two groups for three weeks. One group gets a weekly phone reminder, and the other gets a card or small light on the counter next to the machine.</p><div class="chips"><span>20 owners</span><span>3 weeks</span></div><p class="gain">You’ll learn whether a cue in the kitchen works better than a message on the phone.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">4 boards</div><h3>A few people raised how it feels to own a Vitamix.</h3>
+        <p>One note suggested a usage counter on the machine, so owners could see the cost paying off. Others suggested renting, renting to own, or a more affordable option. Each idea appeared on a single note, but together they came from four different boards.</p><p class="support"><span>From the research</span>Vitamix offers financing and certified reconditioned machines today. We didn’t find a rental program.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Send 20 owners a weekly note showing what each use has cost them so far. Watch whether their use changes over four weeks.</p><div class="chips"><span>20 owners</span><span>4 weeks</span><span>Email only</span></div><p class="gain">You’ll learn whether seeing the value builds the habit or just adds guilt.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">2.6 <small>vs</small> 1.5</div><h3>The room agreed on guidance but split on the machine.</h3>
+        <p>We counted how many notes mentioned each idea. Ideas about guidance and content were mentioned 2.6 times each on average, and ideas about the machine 1.5 times. In other words, many people suggested the same content ideas, while almost everyone had a different idea for the machine.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Give one group from across Vitamix the 23 ideas that would improve the current machine. Ask them to pick the three that matter most.</p><div class="chips"><span>1 group</span><span>1 hour</span></div><p class="gain">You’ll learn whether people share a view of the machine’s main problem, and who sees it the same way.</p></div>
+      </article>
+      <article class="ins">
+        <div class="ins-top"><div class="big">4 questions</div><h3>Some people wanted facts before ideas.</h3>
+        <p>Four notes were questions rather than ideas. One asked how people actually eat dinner, and another simply said “Takeout &gt;50%.” The other two asked for a comparison of how people really use the machine and for a way to measure the return. These people were asking for information that wasn’t in the room.</p><p class="support"><span>From the research</span>The research summary shared that day had only one slide focused on Vitamix owners.</p></div>
+        <div class="test"><p class="tl">Quick test</p><p>Email a few hundred registered owners one question. Ask what they made last week and what almost stopped them.</p><div class="chips"><span>300 owners</span><span>1 week</span><span>Email only</span></div><p class="gain">You’ll have the start of the usage picture the room was asking for.</p></div>
+      </article>
+    </div>
+    <div class="unsaid">
+      <div class="unsaid-head"><p class="eyebrow">Worth noting</p><h3>What the boards didn’t say</h3></div>
+      <div class="unsaid-row">
+        <div><b>7 notes</b><p>Cleaning is the biggest barrier in Vitamix’s research, at 25% of owners. It came up on only seven notes.</p></div>
+        <div><b>2 notes</b><p>Noise is tied for the top complaint in the research, at 22%. It came up on only two notes.</p></div>
+        <div><b>0 notes</b><p>Baby food, nut butters and plant milk show the widest gap between owners who know they could make them and owners who do. No note mentioned them.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="band close">
+  <div class="inner">
+    <h2>The ideas are already there. <span>The next move is learning which ones matter most.</span></h2>
+    <p>Each test is small on purpose. The goal is to learn quickly and cheaply before anyone commits to a product. A companion readout lists the source behind every figure.</p>
+    <div class="fine">
+      <span>Sources: Innovation Week Post-it Analysis · Innovation Day Blender Usage deck (Ipsos, n=800) · Vitamix product, care and buying pages · USDA ERS (2026) · Circana (2024) · Lally et al. (2010) · Ih et al. (2003) · Spence &amp; Zampini (2006) · QSR Magazine (2010) · Almond Cow · Gemini Worktops (2025) · YouGov (2024) · Vorwerk (2026)</span>
+      <span>An outside read prepared with Balance Innovation · October 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, L=document.getElementById('t-light'), D=document.getElementById('t-dark');
+  function set(t,save){root.setAttribute('data-theme',t);L.setAttribute('aria-pressed',t==='light');D.setAttribute('aria-pressed',t==='dark');if(save){try{localStorage.setItem('vx-theme',t)}catch(e){}}}
+  var saved=null; try{saved=localStorage.getItem('vx-theme')}catch(e){}
+  set(saved==='dark'?'dark':'light',false);
+  L.addEventListener('click',function(){set('light',true)}); D.addEventListener('click',function(){set('dark',true)});
+})();
+</script>
+<script>
+(function(){
+  var DATA={"ME": [{"theme": null, "items": [{"t": "Provide smaller products/containers and small-portion capability for single people, smaller households, dips and chutneys.", "n": 3}, {"t": "Support coffee grinding.", "n": 1}]}], "MX": [{"theme": "Smarter programs and feedback", "items": [{"t": "Integrate the blender and attachments with smartphone apps/AI and recipe programs to guide use and build confidence.", "n": 5}, {"t": "Make blending foolproof and dump-and-go, with simplicity comparable to Keurig.", "n": 3}, {"t": "Develop consumer-centered blending programs that people will actually use, including whole-food smoothies and snacks.", "n": 3}, {"t": "Offer set-and-forget automated blending and Bluetooth/preset memory for specific recipes.", "n": 2}, {"t": "Improve the user interface, potentially with a larger screen.", "n": 1}, {"t": "Ramp automatically to high speed unless the user overrides it.", "n": 1}, {"t": "Provide a visible indication that the lid is secure.", "n": 1}, {"t": "Design blenders to fit different user skill/talent levels.", "n": 1}, {"t": "Offer different smoothie texture options.", "n": 1}, {"t": "Add a usage counter so consumers can see how frequent use justifies the cost.", "n": 1}]}, {"theme": "Easier to clean and store", "items": [{"t": "Improve overall cleaning convenience, including hard-to-reach areas around the blades.", "n": 2}, {"t": "Provide technology-enabled self-cleaning.", "n": 2}, {"t": "Provide space-saving, stackable container/storage solutions that reduce countertop footprint.", "n": 2}, {"t": "Reduce spray/splash during blending and cleaning.", "n": 1}, {"t": "Improve cord management and appliance storage to make the machine less likely to be forgotten.", "n": 1}, {"t": "Offer quiet blending programs.", "n": 1}]}, {"theme": "New jobs for the base", "items": [{"t": "Make the motor base multipurpose through accessories/attachments, including mixing and juicing.", "n": 5}, {"t": "Improve food-processor design to chop small ingredients such as ginger and garlic.", "n": 1}, {"t": "Improve an immersion blender that clogs on tomato skins, potentially with a larger cup at the bottom.", "n": 1}, {"t": "Offer more hot-food applications beyond soup.", "n": 1}]}, {"theme": "Containers for every household", "items": [{"t": "Provide a larger SS container for family-size smoothies for 5\u20136 people.", "n": 1}, {"t": "Include the blade in a smaller container instead of using a separate blade base.", "n": 1}, {"t": "Offer personalized containers.", "n": 1}]}], "MN": [{"theme": "A machine that senses and guides", "items": [{"t": "Recognize individual users and personalize their experience.", "n": 1}, {"t": "Provide on-machine prompts that suggest recipes.", "n": 1}, {"t": "Automatically adapt blending to the ingredients being used.", "n": 1}, {"t": "Offer voice-automated programs.", "n": 1}, {"t": "Replace or supplement the tamper with built-in technology for difficult-to-blend ingredients.", "n": 1}]}, {"theme": "New jobs, new machines", "items": [{"t": "Expand into dedicated products for specialized activities that use a motor/blade, and offer other kitchen tools through the website.", "n": 3}, {"t": "Support kneading bread.", "n": 1}, {"t": "Add functionality for shredding chicken and reheating prepared food.", "n": 1}, {"t": "Develop a bike attachment that allows blending during a bike ride.", "n": 1}, {"t": "Keep a prepared smoothie cold in a 'smoothie fridge' until it is consumed later.", "n": 1}]}, {"theme": "Rethink power and cleaning", "items": [{"t": "Trade some performance for convenience where it solves specific consumer problems.", "n": 1}, {"t": "Create a cleaning pod for the container, similar in format to a 'Tide Pod'.", "n": 1}, {"t": "Make blades easily removable for cleaning, like Thermomix.", "n": 1}, {"t": "Explore an auxiliary fan to make high-speed use less intimidating.", "n": 1}]}], "GE": [{"theme": "Teach the basics", "items": [{"t": "Show step-by-step how-to videos, techniques and recipe demonstrations on YouTube and social media, including shortcuts and when/how to use the tamper.", "n": 13}, {"t": "Provide basic equipment training and simple, stress-free operating instructions that remove intimidation.", "n": 5}, {"t": "Teach ingredient selection, ingredient layering and preparation for successful blending.", "n": 3}, {"t": "Explain how blender programs deliver precise results and identify situations in which users should use them.", "n": 1}, {"t": "Teach batch preparation of smoothies.", "n": 1}, {"t": "Provide troubleshooting guidance for common issues to reassure users.", "n": 1}]}, {"theme": "Everyday recipes", "items": [{"t": "Provide easy, accessible everyday recipes using simple, familiar ingredients, including dump-and-go options.", "n": 5}, {"t": "Offer recipes for dietary needs and preferences, including vegetarian, vegan and gluten-free options.", "n": 2}, {"t": "Help users make hearty meals and whole-food smoothies/snacks with the blender.", "n": 2}, {"t": "Highlight holiday and gathering recipes and use occasions.", "n": 1}]}, {"theme": "Show what else it can do", "items": [{"t": "Show users broader blender capabilities and clear use cases beyond smoothies, including coffee beans and non-beverage recipes.", "n": 6}, {"t": "Send idea/recipe emails and 'did you know' tips by email/text, including family-recipe mailing lists.", "n": 4}, {"t": "Put capability education and starter-recipe links on packaging or in the box, such as 'try these 3 recipes'.", "n": 3}]}], "GX": [{"theme": "Decide for me", "items": [{"t": "Suggest recipes from ingredients the user enters, already has or loads as a list.", "n": 4}, {"t": "Use QR codes on the blender for recipes of the week or a dynamic, AI-enabled 'blend of the day'.", "n": 2}, {"t": "Address food access and time constraints with open-pantry/open-fridge recipes for working parents and households facing food deserts.", "n": 1}, {"t": "Provide suggested AI prompts for consumers.", "n": 1}, {"t": "Offer a recipe roulette feature to reduce decision fatigue about what to make.", "n": 1}, {"t": "Track what users have made and suggest recipes they have not yet tried.", "n": 1}, {"t": "Use outcome-oriented prompts, such as asking whether the user wants to make a smoothie this weekend.", "n": 1}]}, {"theme": "Plan the week", "items": [{"t": "Create meal plans and meal/smoothie preparation suggestions, delivered through recipes or an app.", "n": 7}, {"t": "Organize recipes by occasion and time available, such as on-the-go meals and quick workday dinners.", "n": 2}, {"t": "Adjust menus to seasonal fruit/vegetables and ingredients readily available at stores.", "n": 2}, {"t": "Offer children's menus and family food plans.", "n": 1}, {"t": "Use themed food days such as No Meat Monday, Fruitful Friday and Soup Sunday.", "n": 1}]}, {"theme": "A better app and site", "items": [{"t": "Create a Vitamix mobile app with recipes, instructional videos and short recipe-idea videos.", "n": 7}, {"t": "Build an interactive recipe website and an online location for product-use knowledge sharing.", "n": 2}, {"t": "Maintain recipe history so users can revisit past recipes and receive suggestions.", "n": 1}, {"t": "Send personalized video links for popular non-beverage recipes based on a user profile.", "n": 1}]}, {"theme": "Voices and reminders", "items": [{"t": "Send app push notifications and email/mobile usage reminders that encourage users to use the machine and share what they made.", "n": 3}, {"t": "Use social stories/content to broaden reach and strengthen cultural connection.", "n": 3}, {"t": "Use celebrity chefs, multiple chefs or influencers to demonstrate recipes and address usage pain points.", "n": 2}, {"t": "Benchmark Weber's training approach.", "n": 1}]}], "GN": [{"theme": null, "items": [{"t": "Provide remote access to a Vitamix chef through calls/Zoom and a 'phone a friend' app option.", "n": 2}, {"t": "Offer official user training and certification.", "n": 1}, {"t": "Create personalized meal plans that use Vitamix for every meal.", "n": 1}, {"t": "Use trained AI to suggest how to improve existing meals by incorporating the blender.", "n": 1}]}], "OE": [{"theme": null, "items": [{"t": "Provide live or in-store demonstrations, including Costco.", "n": 1}]}], "OX": [{"theme": null, "items": [{"t": "Improve audience targeting and identify different customer segments.", "n": 2}, {"t": "Guide consumers in selecting and combining the right products/accessories for their needs.", "n": 1}, {"t": "Make the product more affordable.", "n": 1}]}], "ON": [{"theme": null, "items": [{"t": "Offer in-home hands-on experiences, similar to Tupperware parties.", "n": 1}, {"t": "Offer subscription services for protein/fitness-focused consumers.", "n": 1}, {"t": "Offer a blender rental program to lower the upfront cost barrier.", "n": 1}, {"t": "Offer rental-to-own to reduce the barrier to entry and ownership.", "n": 1}]}], "PE": [{"theme": null, "items": []}], "PX": [{"theme": null, "items": [{"t": "Connect Vitamix with users' preferred apps.", "n": 1}, {"t": "Use fitness organizations/gyms such as CrossFit as recommenders or endorsers.", "n": 1}]}], "PN": [{"theme": "Food and grocery", "items": [{"t": "Partner with meal-kit, prepared-food and food-delivery providers such as Hello Fresh to supply curated recipes/ingredients and make new foods easier to try.", "n": 9}, {"t": "Connect recipe ingredients to grocery shopping lists/orders through partners such as Instacart, Costco or grocery-store apps; support scanning a recipe barcode, pickup and in-store shopping.", "n": 5}, {"t": "Provide premade smoothie pouches and ready-to-blend ingredient bags for smoothies/soups, including frozen grocery-store bags and biodegradable packaging.", "n": 3}, {"t": "Create brand/restaurant partnerships that let consumers recreate signature foods or drinks at home.", "n": 2}, {"t": "Offer produce delivery.", "n": 1}, {"t": "Use geolocation to remind users about recipe shopping needs when they enter a store.", "n": 1}]}, {"theme": "Connected home", "items": [{"t": "Integrate fridge apps/connected refrigerators to recommend recipes from available contents.", "n": 3}, {"t": "Connect Vitamix with other household appliances such as an oven, fridge and microwave.", "n": 1}]}, {"theme": "Health and rewards", "items": [{"t": "Integrate usage reminders with a health app/planner.", "n": 1}, {"t": "Link blending activity to health reward points/incentives.", "n": 1}]}], "CE": [{"theme": null, "items": []}], "CX": [{"theme": "Family and kids", "items": [{"t": "Make blending/cooking fun for children using easy recipes and single-serve customized blends.", "n": 5}, {"t": "Encourage family recipe-making together and shared food-preparation experiences such as making a dip.", "n": 2}, {"t": "Encourage households to share food-preparation responsibility.", "n": 1}]}, {"theme": "Fun and sharing", "items": [{"t": "Run recipe competitions/community challenges, including whole-meal challenges.", "n": 3}, {"t": "Promote a quick, easy 'Vitamix Night' or party-night occasion that feels fun.", "n": 2}, {"t": "Encourage users to share experiments and new usage experiences.", "n": 2}]}, {"theme": "Classes and community", "items": [{"t": "Run cook-along and hands-on cooking classes, including library/community venues, to teach recipes.", "n": 3}, {"t": "Partner with community programs to raise awareness and demonstrate usefulness.", "n": 1}]}], "CN": [{"theme": null, "items": [{"t": "Build cooking/blending clubs, including regional groups led by paid 'super users'.", "n": 3}, {"t": "Run interactive culinary events such as couples cooking.", "n": 1}, {"t": "Build social engagement and daily streaks among users.", "n": 1}]}]}, ROWS={"M": "The machine", "G": "Guidance and content", "O": "Buying and owning", "P": "Partners", "C": "Community and experiences"}, COLS={"E": "Uses what exists", "X": "Extends what exists", "N": "New to Vitamix"};
+  var title=document.getElementById('panel-title'), list=document.getElementById('panel-list');
+  function show(k){
+    var groups=DATA[k]||[], total=0;
+    groups.forEach(function(g){total+=g.items.length});
+    title.textContent=ROWS[k[0]]+' · '+COLS[k[1]]+' · '+total+(total===1?' idea':' ideas');
+    list.innerHTML='';
+    groups.forEach(function(g){
+      var box=document.createElement('div'); box.className='tg';
+      if(g.theme){var h=document.createElement('h4'); h.innerHTML=''; var a=document.createElement('span'); a.textContent=g.theme; var b=document.createElement('i'); b.textContent=g.items.length+(g.items.length===1?' idea':' ideas'); h.appendChild(a); h.appendChild(b); box.appendChild(h);}
+      var ol=document.createElement('ol');
+      g.items.forEach(function(it){
+        var li=document.createElement('li'), i=document.createElement('i'), s=document.createElement('span');
+        i.textContent=it.n+(it.n===1?' note':' notes'); s.textContent=it.t;
+        li.appendChild(i); li.appendChild(s); ol.appendChild(li);
+      });
+      box.appendChild(ol); list.appendChild(box);
+    });
+    document.querySelectorAll('.cell[data-k]').forEach(function(c){ if(c.tagName==='BUTTON') c.setAttribute('aria-pressed', c.dataset.k===k?'true':'false'); });
+  }
+  document.querySelectorAll('button.cell').forEach(function(c){ c.addEventListener('click',function(){ show(c.dataset.k); }); });
+  show('MX');
+})();
+</script>
+
+</body></html>
